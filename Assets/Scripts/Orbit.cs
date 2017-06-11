@@ -5,15 +5,16 @@ using UnityEngine;
 public class Orbit : MonoBehaviour
 {
     public GameObject Parent;
-    public int Speed;
+    public AnimationCurve TimingCurve;
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start () {
 		
 	}
 	
 	// Update is called once per frame
 	void Update () {
-	    transform.RotateAround(Parent.transform.position, Vector3.up, Speed * Time.deltaTime);
+        Debug.Log("time: " + Time.time + " - eval: " + TimingCurve.Evaluate(Time.time));
+	    transform.RotateAround(Parent.transform.position, Vector3.up, TimingCurve.Evaluate(Time.time) * Time.deltaTime);
     }
 }
